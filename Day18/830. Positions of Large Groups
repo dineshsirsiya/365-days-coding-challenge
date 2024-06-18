@@ -1,0 +1,21 @@
+class Solution {
+    public List<List<Integer>> largeGroupPositions(String s) {
+        List <List<Integer>> ans = new ArrayList<>();
+        int p=0,count=0;
+        char cur='1';
+        for(int i=0;i<s.length();i++){
+            if(cur!=s.charAt(i)){
+                if(count>2) ans.add(List.of(p,p+count-1));
+                p=i;
+                count=1;
+                cur=s.charAt(i);
+            }
+            else
+            count++;
+        }
+        if(count>2){
+            ans.add(List.of(p,p+count-1));
+        }
+        return ans;     
+    }
+}
