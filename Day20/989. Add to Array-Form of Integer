@@ -1,0 +1,33 @@
+ class Solution {
+    public List<Integer> addToArrayForm(int[] num, int k) {
+        List<Integer> result = new ArrayList<>();
+
+        int i = num.length - 1;
+        int carry = 0;
+
+        while (i >= 0 || k > 0) {
+            int digit = carry;
+
+            if (i >= 0) {
+                digit += num[i];
+                i--;
+            }
+
+            if (k > 0) {
+                digit += k % 10;
+                k /= 10;
+            }
+
+            carry = digit / 10;
+            digit %= 10;
+
+            result.add(0, digit);
+        }
+
+        if (carry > 0) {
+            result.add(0, carry);
+        }
+
+        return result;
+    }
+}
