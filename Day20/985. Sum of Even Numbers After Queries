@@ -1,0 +1,22 @@
+class Solution {
+    private int esum(int[] arr){
+        int n=arr.length;
+        int sum=0;
+        for(int i=0;i<n;i++){
+            if(arr[i]%2==0){
+                sum+=arr[i];
+            
+        }
+        return sum;
+
+    }
+    public int[] sumEvenAfterQueries(int[] nums, int[][] queries) {
+        int res[]=new int[nums.length];
+        for(int i=0;i<nums.length;i++){
+            nums[queries[i][1]]+=queries[i][0];
+            res[i]=esum(nums);
+        }
+        return res;
+    }
+        
+}
