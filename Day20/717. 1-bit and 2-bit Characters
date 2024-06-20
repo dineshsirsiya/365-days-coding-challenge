@@ -1,0 +1,21 @@
+class Solution {
+    public boolean isOneBitCharacter(int[] bits) {
+        //Solution 1
+    // int i = 0;
+    // while (i < bits.length - 1) {
+    //     if (bits[i] == 0) {
+    //         i++;
+    //     } else {
+    //         i += 2;
+    //     }
+    // }
+    // return i == bits.length - 1;
+
+    //Solution 2
+    int count = 0;
+        for(int i = bits.length - 2;i >= 0 && bits[i] != 0;i--)
+            count++;
+    
+    return count % 2 == 0;
+    }
+}
