@@ -1,0 +1,37 @@
+//tle-time limit exceed
+class Solution {
+    public int numPairsDivisibleBy60(int[] time) {
+        int res=0;
+        for(int i=0;i<time.length-1;i++){
+            for(int j=i+1;j<time.length;j++){
+                if((time[i]+time[j])%60==0){
+                    res++;
+                }
+            }
+        }
+        return res;
+        
+    }
+}
+//better
+class Solution {
+    public int numPairsDivisibleBy60(int[] time) {  
+        int count =0;
+        int[] arr = new int[60];
+        Arrays.fill(arr,0);
+        
+        for(int i=0;i<time.length;i++){
+            int r = time[i]%60;
+            if(r==0){
+                arr[0]++;
+                count+= arr[0] -1;
+            }else if(arr[60-r] > 0){ // 1+59
+                count+= arr[60-r];
+                arr[r]++;
+            }else{
+                arr[r]++;
+            }
+        }
+        return count;
+    }
+}
