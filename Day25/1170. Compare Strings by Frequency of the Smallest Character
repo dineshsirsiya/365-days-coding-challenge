@@ -1,0 +1,44 @@
+class Solution {
+    private char smallest(String arr){
+        char m='z';
+        for(int i=0;i<arr.length();i++){
+            if(arr.charAt(i)<m){
+                m=arr.charAt(i);
+            }
+        }
+        return m;
+
+    }
+    private int fqr(String str,char c){
+        int ans=0;
+        for(int i=0;i<str.length();i++){
+            if(c==str.charAt(i)){
+                ans++;
+            }
+        }
+        return ans;
+    }
+    public int[] numSmallerByFrequency(String[] queries, String[] words) {
+        int res[]=new int[queries.length];
+        int fq[]=new int[queries.length];
+        int fs[]=new int[words.length];
+        for(int i=0;i<queries.length;i++){
+            fq[i]=fqr(queries[i],smallest(queries[i]));
+        }
+        for(int i=0;i<words.length;i++){
+            fs[i]=fqr(words[i],smallest(words[i]));
+        }
+        int count=0;
+        for(int i=0;i<queries.length;i++){
+            for(int j=0;j<words.length;j++){
+                if(fq[i]<fs[j]){
+                    count++;
+                }
+            }
+            res[i]=count;
+            count=0;
+        }
+
+       return res;
+    }
+}
